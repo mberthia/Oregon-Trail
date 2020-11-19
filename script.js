@@ -62,23 +62,6 @@ class Wagon {
   }
 }
 
-// let Gloria = new Wagon(2);
-// let Mark = new Traveler("Mark");
-// let Cindy = new Traveler("Cindy");
-// let Brenda = new Traveler("Brenda");
-// Gloria.join(Cindy);
-// Gloria.join(Mark);
-// Gloria.join(Brenda);
-// Mark.eat();
-// Mark.eat();
-// console.log(Cindy.isHealthy);
-// console.log(Mark.isHealthy);
-// console.log(Gloria.passengers.length);
-// console.log(Gloria.getAvailableSeatCount());
-// console.log(Gloria.passengers);
-// console.log(Gloria.shouldQuarantine());
-// console.log(Gloria.totalFood());
-
 let wagon = new Wagon(2);
 let henrietta = new Traveler("Henrietta");
 let juan = new Traveler("Juan");
