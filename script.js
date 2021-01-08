@@ -1,4 +1,14 @@
-// console.log("hello");
+let makeTravelerButton = document.querySelector("#make-traveler");
+let userTravelerName = document.querySelector("#traveler-name");
+let travelerList = document.getElementById("traveler-list");
+let lineBreak = document.createElement("br");
+let showWagon = document.querySelector("#show-wagon");
+let wagonPassengers = document.querySelector("#wagon-people");
+let wagonFood = document.querySelector("#show-food");
+let wagonHealth = document.querySelector("#show-health");
+let personEat = document.querySelector("#show-eat");
+let huntButton = document.querySelector("#hunt-button");
+
 class Traveler {
   constructor(name, food, isHealthy) {
     this.name = name;
@@ -62,27 +72,75 @@ class Wagon {
   }
 }
 
-let wagon = new Wagon(2);
-let henrietta = new Traveler("Henrietta");
-let juan = new Traveler("Juan");
-let maude = new Traveler("Maude");
-console.log(
-  `Wagon Seat Count?: ${wagon.getAvailableSeatCount()} – EXPECTED: 2. The wagon starts with 2 seats. We haven't added travelers to the wagon yet.`
-);
-wagon.join(henrietta);
-console.log(
-  `Wagon Seat Count?: ${wagon.getAvailableSeatCount()} – EXPECTED: 1. Henrietta just joined.`
-);
-wagon.join(juan);
-wagon.join(maude);
-console.log(
-  `Wagon Seat Count?: ${wagon.getAvailableSeatCount()} – EXPECTED: 0 – There is no room for Maude, but Juan was able to join.`
-);
-henrietta.hunt();
-juan.eat();
-juan.eat();
-console.log(juan);
-console.log(
-  `Wagon Should Quarantine?: ${wagon.shouldQuarantine()} – EXPECTED: true. Juan has run out of food and become unhealthy!`
-);
-console.log(`Wagon's Total Food?: ${wagon.totalFood()} – EXPECTED: 3.`);
+makeTravelerButton.addEventListener("click", function () {
+  let index = 0;
+  let partyMember = new Traveler(userTravelerName.value);
+  Gloria.join(partyMember);
+  console.log(Gloria.passengers);
+});
+
+showWagon.addEventListener("click", function () {
+  let index = 0;
+  while (Gloria.passengers.length > index) {
+    let nameList = document.createElement("li");
+    nameList.innerHTML = Gloria.passengers[index].name;
+    document.getElementById("wagon-people").appendChild(nameList);
+    index++;
+  }
+});
+
+wagonFood.addEventListener("click", function () {
+  let index = 0;
+  while (Gloria.passengers.length > index) {
+    let foodList = document.createElement("li");
+    foodList.innerHTML =
+      Gloria.passengers[index].name +
+      " has " +
+      Gloria.passengers[index].food +
+      " piece(s) of food.";
+    document.getElementById("wagon-food").appendChild(foodList);
+    index++;
+  }
+});
+
+wagonHealth.addEventListener("click", function () {
+  let index = 0;
+  while (Gloria.passengers.length > index) {
+    let healthList = document.createElement("li");
+    if (Gloria.passengers[index].isHealthy === true) {
+      healthList.innerHTML = Gloria.passengers[index].name + " is healthy.";
+    } else {
+      healthList.innerHTML = Gloria.passengers[index].name + " is unhealthy";
+    }
+    document.getElementById("wagon-health").appendChild(healthList);
+    index++;
+  }
+});
+
+personEat.addEventListener("click", function () {
+  var person =
+    Gloria.passengers[Math.floor(Math.random() * Gloria.passengers.length)];
+  if (person.food === 0) {
+    window.alert(person.name + " has no food!");
+    person.isHealthy = false;
+  } else {
+    person.eat();
+    let eatList = document.createElement("li");
+    eatList.innerHTML = person.name + " has eaten some food.";
+    document.getElementById("eat-button").appendChild(eatList);
+  }
+  console.log(person);
+});
+
+huntButton.addEventListener("click", function () {
+  var person =
+    Gloria.passengers[Math.floor(Math.random() * Gloria.passengers.length)];
+  person.hunt();
+  let huntList = document.createElement("li");
+  huntList.innerHTML = person.name + " got themselves some food.";
+  document.getElementById("show-hunt").appendChild(huntList);
+});
+let Gloria = new Wagon(4);
+
+console.log(Gloria.capacity);
+console.log(Gloria.passengers);

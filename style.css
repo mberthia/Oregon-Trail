@@ -1,0 +1,18 @@
+#traveler-list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  background-color: cyan;
+  border: 3px solid crimson;
+  border-radius: 5px;
+  width: 40%;
+}
+
+#wagon-people {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+  background-color: red;
+}
